@@ -5,6 +5,8 @@
  */
 package ifto.sd.model.dao;
 
+import ifto.sd.model.entity.Cidade;
+import ifto.sd.model.entity.Estado;
 import ifto.sd.model.entity.Hotel;
 import ifto.sd.model.entity.Quarto;
 import java.util.HashMap;
@@ -29,15 +31,13 @@ public class HotelDAO {
         Query query = em.createQuery("from Hotel");
         return query.getResultList();
     }
-
-//    consultar hotéis por cidade
+    
     public List<Hotel> listHoteisPorCidade(long id) {
         Query query = em.createQuery("from Hotel h where h.bairro.cidade.id = ?1");
         query.setParameter(1, id);
         return query.getResultList();
     }
 
-//    consultar hotéis por bairro de uma cidade
     public List<Hotel> listHoteisCidadeBairro(long id1, long id2) {
         Query query = em.createQuery("from Hotel h where h.bairro.cidade.id = ?1 and h.bairro.id =?2");
         query.setParameter(1, id1);
@@ -45,7 +45,6 @@ public class HotelDAO {
         return query.getResultList();
     }
 
-//    consultar hotéis por cidade, faixa de preço e total de camas
     public Map<String, Quarto> listHoteisCidadeFaixaCamas(long id1, double id2, double id3, int id4) {
         if (id2 < id3) {
             double temp = id2;

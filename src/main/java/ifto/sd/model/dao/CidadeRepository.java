@@ -6,6 +6,7 @@
 package ifto.sd.model.dao;
 
 import ifto.sd.model.entity.Cidade;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author rene
  */
 public interface CidadeRepository extends JpaRepository<Cidade, Long>{
-    
+    List <Cidade> findByNome (String nome);
 }
