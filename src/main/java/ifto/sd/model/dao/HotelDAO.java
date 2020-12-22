@@ -5,8 +5,6 @@
  */
 package ifto.sd.model.dao;
 
-import ifto.sd.model.entity.Cidade;
-import ifto.sd.model.entity.Estado;
 import ifto.sd.model.entity.Hotel;
 import ifto.sd.model.entity.Quarto;
 import java.util.HashMap;
