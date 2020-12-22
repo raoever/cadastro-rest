@@ -143,7 +143,7 @@ public class HotelController {
     public Map<String, Quarto> listHotelPorNomeCidadeFaixaCamas(@PathVariable(value = "cidade") String cidade, @PathVariable(value = "preco1") double preco1, @PathVariable(value = "preco2") double preco2, @PathVariable(value = "camas") int camas) {
         List <Cidade> cidades = cidadeRepository.findByNome(cidade);
         if(cidades.size() > 1){
-            throw new IllegalArgumentException("Achado mais de uma cidade com o nome indicado, Por favor entre como nome da cidade + UF - ex.: Palmas/TO/Plano%20Diretor%20Norte.");
+            throw new IllegalArgumentException("Achado mais de uma cidade com o nome indicado, Por favor entre como nome da cidade + UF - ex.: Palmas/TO/100/300/2.");
         } else if (cidades.size() < 1){
             throw new IllegalArgumentException("Cidade não Encontrada!");
         }
@@ -151,7 +151,7 @@ public class HotelController {
         return hotelDAO.listHoteisCidadeFaixaCamas(idCidade, preco1, preco2, camas);
     }
     
-    //    consultar hotéis por cidade, faixa de preço e total de camas
+    //    consultar hotéis por cidade, uf, faixa de preço e total de camas
     @GetMapping("/hoteisCidadeFaixaCamas/{cidade}/{uf}/{preco1}/{preco2}/{camas}")
     public Map<String, Quarto> listHotelPorCidadeEstadoFaixaCamas(@PathVariable(value = "cidade") String cidade, @PathVariable(value = "uf") String uf, @PathVariable(value = "preco1") double preco1, @PathVariable(value = "preco2") double preco2, @PathVariable(value = "camas") int camas) {
          List <Cidade> cidades = cidadeRepository.findByNome(cidade);
@@ -174,7 +174,7 @@ public class HotelController {
 
     //    consultar hotéis por Id cidade, faixa de preço e total de camas
     @GetMapping("/hoteisIdCidadeFaixaCamas/{id}/{preco1}/{preco2}/{camas}")
-    public Map<String, Quarto> listHotelPorIdCidadeFaixaCamas(@PathVariable(value = "id1") long id, @PathVariable(value = "preco1") double preco1, @PathVariable(value = "preco2") double preco2, @PathVariable(value = "camas") int camas) {
+    public Map<String, Quarto> listHotelPorIdCidadeFaixaCamas(@PathVariable(value = "id") long id, @PathVariable(value = "preco1") double preco1, @PathVariable(value = "preco2") double preco2, @PathVariable(value = "camas") int camas) {
         return hotelDAO.listHoteisCidadeFaixaCamas(id, preco1, preco2, camas);
     }
     
