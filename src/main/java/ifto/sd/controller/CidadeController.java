@@ -5,7 +5,7 @@
  */
 package ifto.sd.controller;
 
-import ifto.sd.model.dao.CidadeRepository;
+import ifto.sd.model.repository.CidadeRepository;
 import ifto.sd.model.entity.Cidade;
 import java.util.List;
 import javax.transaction.Transactional;

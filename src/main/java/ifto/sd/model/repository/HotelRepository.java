@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifto.sd.model.dao;
+package ifto.sd.model.repository;
 
 import ifto.sd.model.entity.Hotel;
 import ifto.sd.model.entity.Quarto;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,7 +19,7 @@ import org.springframework.stereotype.Repository;
  * @author rene
  */
 @Repository
-public class HotelDAO {
+public class HotelRepository {
 
     @PersistenceContext
     private EntityManager em;
@@ -43,17 +42,18 @@ public class HotelDAO {
         return query.getResultList();
     }
 
-    public Map<String, Quarto> listHoteisCidadeFaixaCamas(long id1, double id2, double id3, int id4) {
+    public List<Quarto> listHoteisCidadeFaixaCamas(long id1, double id2, double id3, int id4) {
         if (id2 < id3) {
             double temp = id2;
             id2 = id3;
             id3 = temp;
         }
-        Map<String, Quarto> hoteisSorted = new HashMap<>();
+        List<Quarto> hoteisSorted = new ArrayList<>();
         List<Quarto> quartos = listQuartosCidade(id1);
         for (Quarto q : quartos) {
             if (q.getNumeroCamas() == id4 && q.getPreco() < id2 && q.getPreco() > id3) {
-                hoteisSorted.put(q.getHotel().getNome(), q);
+                hoteisSorted.add(q);
+                System.out.println(q.toString());
             }
         }
         return hoteisSorted;

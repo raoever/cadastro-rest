@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifto.sd.model.dao;
+package ifto.sd.model.repository;
 
-import ifto.sd.model.entity.Quarto;
+import ifto.sd.model.entity.Bairro;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author rene
  */
-public interface QuartoRepository extends JpaRepository<Quarto, Long>{
-    Quarto findById(long id);
+public interface BairroRepository extends JpaRepository<Bairro, Long>{
+    List<Bairro> findByNome(String nome);
 }

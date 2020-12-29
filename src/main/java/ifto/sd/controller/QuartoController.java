@@ -5,7 +5,7 @@
  */
 package ifto.sd.controller;
 
-import ifto.sd.model.dao.QuartoRepository;
+import ifto.sd.model.repository.QuartoRepository;
 import ifto.sd.model.entity.Quarto;
 import java.util.List;
 import javax.transaction.Transactional;

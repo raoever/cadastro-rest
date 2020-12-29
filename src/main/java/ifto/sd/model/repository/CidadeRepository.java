@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifto.sd.model.dao;
+package ifto.sd.model.repository;
 
 import ifto.sd.model.entity.Cidade;
 import java.util.List;

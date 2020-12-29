@@ -5,7 +5,7 @@
  */
 package ifto.sd.controller;
 
-import ifto.sd.model.dao.BairroRepository;
+import ifto.sd.model.repository.BairroRepository;
 import ifto.sd.model.entity.Bairro;
 import java.util.List;
 import javax.transaction.Transactional;

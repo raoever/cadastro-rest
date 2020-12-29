@@ -6,7 +6,7 @@
 package ifto.sd.controller;
 
 import ifto.sd.model.entity.Estado;
-import ifto.sd.model.dao.EstadoRepository;
+import ifto.sd.model.repository.EstadoRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

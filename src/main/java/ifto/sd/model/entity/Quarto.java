@@ -99,5 +99,10 @@ public class Quarto implements Serializable {
     public void setReservas(List<Reserva> reservas) {
         this.reservas = reservas;
     }
+
+    @Override
+    public String toString() {
+        return "Quarto {hotel= " + hotel.getNome() + ", id=" + id + ", numero=" + numero + ", andar=" + andar + ", numeroCamas=" + numeroCamas + ", preco=" + preco + '}';
+    }
     
 }

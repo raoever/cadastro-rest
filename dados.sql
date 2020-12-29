@@ -3,10 +3,10 @@ INSERT INTO `cadastro`.`tb_hotel` (`id`, `nome`, `id_bairro`) VALUES
 ('1', 'Ibis Palmas', '1'),
 ('2', 'Hotel Girassol Plaza', '1'),
 ('3', 'Céu Palmas Hotel', '2'),
-('4', 'Hplus Premium Palmas\nHplus Premium Palmas\n', '2'),
+('4', 'Hplus Premium Palmas', '2'),
 ('5', 'Di Napoli Plaza Hotel', '3'),
-('6', 'Hotel MuHotel Mutucão\ntucão\n', '4'),
-('7', 'SerranSerranos Park Hotel\nos Park Hotel\n', '5'),
+('6', 'Hotel Mutucão', '4'),
+('7', 'Serranos Park Hotel', '5'),
 ('8', 'Hotel Entre Rios', '5'),
 ('9', 'Hotel São Vicente', '6'),
 ('10', 'Brii Hotel', '7');

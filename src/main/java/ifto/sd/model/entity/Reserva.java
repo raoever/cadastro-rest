@@ -32,7 +32,7 @@ public class Reserva implements Serializable {
     private LocalDate checkin;
     private LocalDate checkout;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne() // removido para não apagar o quarto quando deletar a reserva(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_quarto")
     @JsonBackReference
     private Quarto quarto;
@@ -79,9 +79,8 @@ public class Reserva implements Serializable {
 
     @Override
     public String toString() {
-        return "Reserva{" + "id=" + id + ", nomeCliente=" + nomeCliente + ", checkin=" + checkin + ", checkout=" + checkout + ", quarto=" + quarto.getId() + '}';
+        return "Reserva{" + "Hotel= " + quarto.getHotel().getNome() + ", Quarto= " + quarto.getNumero() + ", Preço= " + quarto.getPreco() + 
+               ", id= " + id + ", nomeCliente=" + nomeCliente + ", checkin=" + checkin + ", checkout=" + checkout + '}';
     }
-    
-    
     
 }
