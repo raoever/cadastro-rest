@@ -68,7 +68,7 @@ JSON:
 }
 
 //    excluir reserva de quarto
-Método DELETE
+Método DELETE 
 http://localhost:8080/api/reserva/1
 
 OBSERVAÇÃO: Caso uma cidade, estado ou bairro não seja encontrado também é gerado um erro com a respectiva mensagem.
