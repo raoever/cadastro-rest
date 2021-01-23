@@ -20,14 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Transactional
-@RequestMapping(value="/api")
+@RequestMapping(value="/bairro")
 public class BairroController {
     
     @Autowired
-    BairroRepository bairroRepository;
+    BairroRepository repository;
     
-    @GetMapping("/bairros")
-    public List<Bairro> listBairros(){
-        return bairroRepository.findAll();
+    @GetMapping("/todos")
+    public List<Bairro> list(){
+        return repository.findAll();
     }
 }

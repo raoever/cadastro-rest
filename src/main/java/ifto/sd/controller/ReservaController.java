@@ -25,17 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @author rene
  */
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/reserva")
 public class ReservaController {
     @Autowired
     QuartoRepository quartoRepository;
     
     @Autowired
-    ReservaRepository reservaRepository;
+    ReservaRepository repository;
 
-    @GetMapping("/reservas")
-    public List<Reserva> listReservas(){
-        List reservas = reservaRepository.findAll();
+    @GetMapping("/todas")
+    public List<Reserva> list(){
+        List reservas = repository.findAll();
         for (Object reserva : reservas) {
             System.out.println(reserva);
         }
@@ -43,29 +43,29 @@ public class ReservaController {
     }
     
 //    cadastrar reserva de quarto
-    @PostMapping("/reserva")
-    public Reserva salvaReserva(@RequestBody Reserva reserva){
+    @PostMapping("/adiciona")
+    public Reserva salva(@RequestBody Reserva reserva){
         Quarto quarto = quartoRepository.findById(reserva.getQuarto().getId());
         reserva.setQuarto(quarto);
-        Reserva res = reservaRepository.save(reserva);
+        Reserva res = repository.save(reserva);
         System.out.println(res);
         return res;
     }
     
 //    alterar reserva de quarto
-    @PutMapping("/reserva")
-    public Reserva alteraReserva(@RequestBody Reserva reserva){
+    @PutMapping("/altera")
+    public Reserva altera(@RequestBody Reserva reserva){
         Quarto quarto = quartoRepository.findById(reserva.getQuarto().getId());
         reserva.setQuarto(quarto);
-        Reserva res = reservaRepository.save(reserva);
+        Reserva res = repository.save(reserva);
         System.out.println(res);
         return res;
     }
     
     
 //    excluir reserva de quarto
-    @DeleteMapping("/reserva/{id}")
-    public void exclueReserva(@PathVariable(value = "id") long id){
-        reservaRepository.deleteById(id);
+    @DeleteMapping("/exclui/{id}")
+    public void exclue(@PathVariable(value = "id") long id){
+        repository.deleteById(id);
     }
 }

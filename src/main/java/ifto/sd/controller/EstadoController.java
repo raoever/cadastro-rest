@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Transactional
-@RequestMapping(value="/api")
+@RequestMapping(value="/estado")
 public class EstadoController {
     @Autowired
-    EstadoRepository estadoRepository;
+    EstadoRepository repository;
     
-    @GetMapping("/estados")
-    public List<Estado> listEstados(){
-        return estadoRepository.findAll();
+    @GetMapping("/todos")
+    public List<Estado> list(){
+        return repository.findAll();
     }
 }

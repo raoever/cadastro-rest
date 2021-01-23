@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Transactional
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/quarto")
 public class QuartoController {
     @Autowired
-    QuartoRepository quartoRepository;
+    QuartoRepository repository;
 
-    @GetMapping("/quartos")
+    @GetMapping("/todos")
     public List<Quarto> listQuartos(){
-        return quartoRepository.findAll();
+        return repository.findAll();
     }
 }

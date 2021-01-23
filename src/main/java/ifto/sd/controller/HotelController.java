@@ -28,11 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Transactional
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/hotel")
 public class HotelController {
 
     @Autowired
-    HotelRepository hotelRepository;
+    HotelRepository repository;
     
     @Autowired
     BairroRepository bairroRepository;
@@ -43,13 +43,13 @@ public class HotelController {
     @Autowired
     EstadoRepository estadoRepository;
     
-    @GetMapping("/hoteis")
+    @GetMapping("/todos")
     public List<Hotel> listHoteis(){
-        return hotelRepository.listHoteis();
+        return repository.listHoteis();
     }
     
     //    consultar hotéis por nome de cidade
-    @GetMapping("/hoteisNomeCidade/{cidade}")
+    @GetMapping("/NomeCidade/{cidade}")
     public List<Hotel> listHoteisNomeCidade(@PathVariable(value = "cidade") String cidade){
         List <Cidade> cidades = cidadeRepository.findByNome(cidade);
         if(cidades.size() > 1){
@@ -57,11 +57,11 @@ public class HotelController {
         } else if (cidades.size() < 1){
             throw new IllegalArgumentException("Cidade não Encontrada!");
         }
-        return hotelRepository.listHoteisPorCidade(cidades.get(0).getId());
+        return repository.listHoteisPorCidade(cidades.get(0).getId());
     }
     
     //    consultar hotéis por nome de cidade e estado para para cidades com nomes repetidos
-    @GetMapping("/hoteisNomeCidade/{cidade}/{uf}")
+    @GetMapping("/NomeCidade/{cidade}/{uf}")
     public List<Hotel> listHoteisNomeCidade(@PathVariable(value = "cidade") String cidade, @PathVariable(value = "uf") String uf){
         List <Cidade> cidades = cidadeRepository.findByNome(cidade);
         if(cidades.size() < 1){
@@ -78,17 +78,17 @@ public class HotelController {
                 idCidade = c.getId();
             }
         }
-        return hotelRepository.listHoteisPorCidade(idCidade);
+        return repository.listHoteisPorCidade(idCidade);
     }
     
     //    consultar hotéis por id de cidade
-    @GetMapping("/hotelPorIdCidade/{id}")
+    @GetMapping("/PorIdCidade/{id}")
     public List<Hotel> listHotelPorCidade(@PathVariable(value = "id") long id) {
-        return hotelRepository.listHoteisPorCidade(id);
+        return repository.listHoteisPorCidade(id);
     }
     
     //    consultar hotéis por nome de bairro de uma cidade
-    @GetMapping("/hotelPorNomeCidadeBairro/{cidade}/{bairro}")
+    @GetMapping("/PorNomeCidadeBairro/{cidade}/{bairro}")
     public List<Hotel> listHotelPorCidadeBairro(@PathVariable(value = "cidade") String cidade, @PathVariable(value = "bairro") String bairro) {
         List <Cidade> cidades = cidadeRepository.findByNome(cidade);
         if(cidades.size() > 1){
@@ -102,11 +102,11 @@ public class HotelController {
             throw new IllegalArgumentException("Bairro não Encontrado!");
         }
         long idBairro = bairros.get(0).getId();
-        return hotelRepository.listHoteisCidadeBairro(idCidade, idBairro);
+        return repository.listHoteisCidadeBairro(idCidade, idBairro);
     }
     
     //    consultar hotéis por nome de bairro de uma cidade e estado para cidades com nomes repetidos
-    @GetMapping("/hotelPorNomeCidadeBairro/{cidade}/{uf}/{bairro}")
+    @GetMapping("/PorNomeCidadeBairro/{cidade}/{uf}/{bairro}")
     public List<Hotel> listHotelPorCidadeBairro(@PathVariable(value = "cidade") String cidade, @PathVariable(value = "uf") String uf, @PathVariable(value = "bairro") String bairro) {
         List <Cidade> cidades = cidadeRepository.findByNome(cidade);
         if (cidades.size() < 1){
@@ -128,17 +128,17 @@ public class HotelController {
             throw new IllegalArgumentException("Bairro não Encontrado!");
         }
         long idBairro = bairros.get(0).getId();
-        return hotelRepository.listHoteisCidadeBairro(idCidade, idBairro);
+        return repository.listHoteisCidadeBairro(idCidade, idBairro);
     }
     
     //    consultar hotéis por Id bairro de uma Id cidade
-    @GetMapping("/hotelPorIdCidadeIdBairro/{id1}/{id2}")
+    @GetMapping("/PorIdCidadeIdBairro/{id1}/{id2}")
     public List<Hotel> listHotelPorIdCidadeBairro(@PathVariable long id1, @PathVariable long id2) {
-        return hotelRepository.listHoteisCidadeBairro(id1, id2);
+        return repository.listHoteisCidadeBairro(id1, id2);
     }
     
     //    consultar hotéis por cidade, faixa de preço e total de camas
-    @GetMapping("/hoteisCidadeFaixaCamas/{cidade}/{preco1}/{preco2}/{camas}")
+    @GetMapping("/CidadeFaixaCamas/{cidade}/{preco1}/{preco2}/{camas}")
     public List<Quarto> listHotelPorNomeCidadeFaixaCamas(@PathVariable(value = "cidade") String cidade, @PathVariable(value = "preco1") double preco1, @PathVariable(value = "preco2") double preco2, @PathVariable(value = "camas") int camas) {
         List <Cidade> cidades = cidadeRepository.findByNome(cidade);
         if(cidades.size() > 1){
@@ -147,11 +147,11 @@ public class HotelController {
             throw new IllegalArgumentException("Cidade não Encontrada!");
         }
         long idCidade = cidades.get(0).getId();
-        return hotelRepository.listHoteisCidadeFaixaCamas(idCidade, preco1, preco2, camas);
+        return repository.listHoteisCidadeFaixaCamas(idCidade, preco1, preco2, camas);
     }
     
     //    consultar hotéis por cidade, uf, faixa de preço e total de camas
-    @GetMapping("/hoteisCidadeFaixaCamas/{cidade}/{uf}/{preco1}/{preco2}/{camas}")
+    @GetMapping("/CidadeFaixaCamas/{cidade}/{uf}/{preco1}/{preco2}/{camas}")
     public List<Quarto> listHotelPorCidadeEstadoFaixaCamas(@PathVariable(value = "cidade") String cidade, @PathVariable(value = "uf") String uf, @PathVariable(value = "preco1") double preco1, @PathVariable(value = "preco2") double preco2, @PathVariable(value = "camas") int camas) {
          List <Cidade> cidades = cidadeRepository.findByNome(cidade);
         if (cidades.size() < 1){
@@ -169,13 +169,13 @@ public class HotelController {
                 idCidade = c.getId();
             }
         }
-        return hotelRepository.listHoteisCidadeFaixaCamas(idCidade, preco1, preco2, camas);
+        return repository.listHoteisCidadeFaixaCamas(idCidade, preco1, preco2, camas);
     }
 
     //    consultar hotéis por Id cidade, faixa de preço e total de camas
-    @GetMapping("/hoteisIdCidadeFaixaCamas/{id}/{preco1}/{preco2}/{camas}")
+    @GetMapping("/IdCidadeFaixaCamas/{id}/{preco1}/{preco2}/{camas}")
     public List<Quarto> listHotelPorIdCidadeFaixaCamas(@PathVariable(value = "id") long id, @PathVariable(value = "preco1") double preco1, @PathVariable(value = "preco2") double preco2, @PathVariable(value = "camas") int camas) {
-        return hotelRepository.listHoteisCidadeFaixaCamas(id, preco1, preco2, camas);
+        return repository.listHoteisCidadeFaixaCamas(id, preco1, preco2, camas);
     }
     
 }
